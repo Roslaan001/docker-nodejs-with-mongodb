@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>MongoDB Test</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+            }
+            input,
+            button {
+                padding: 8px;
+                margin: 5px;
+            }
+            #results {
+                margin-top: 20px;
+            }
+            .record {
+                padding: 5px;
+                border-bottom: 1px solid #ccc;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Test MongoDB Connection</h2>
+
+        <form id="testForm">
+            <input type="text" id="name" placeholder="Enter name" required />
+            <input type="email" id="email" placeholder="Enter email" required />
+            <button type="submit">Save to Database</button>
+        </form>
+
+        <button onclick="fetchData()">Load All Records</button>
+
+        <div id="results"></div>
+
+        <script>
+            const apiUrl = "http://localhost:3000/api";
+
+            // handle form submit
+            document
+                .getElementById("testForm")
+                .addEventListener("submit", async (e) => {
+                    e.preventDefault();
+                    const name = document.getElementById("name").value;
+                    const email = document.getElementById("email").value;
+
+                    const res = await fetch(apiUrl + "/add", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ name, email }),
+                    });
+
+                    const data = await res.json();
+                    alert(data.message);
+                    fetchData(); // refresh list after adding
+                });
+
+            // fetch records
+            async function fetchData() {
+                const res = await fetch(apiUrl + "/all");
+                const data = await res.json();
+
+                const resultsDiv = document.getElementById("results");
+                resultsDiv.innerHTML = "<h3>Database Records:</h3>";
+                data.forEach((record) => {
+                    resultsDiv.innerHTML += `<div class="record"><strong>${record.name}</strong> - ${record.email}</div>`;
+                });
+            }
+        </script>
+    </body>
+</html>
