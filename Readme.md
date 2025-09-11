@@ -2,8 +2,8 @@ This repo contains nodejs app and a dockerfile, To use, follow the steps below
 
 ##### Step 1: Clone the repo
 ```bash
-git clone  https://github.com/Roslaan001/nodejs-with-docker
-cd docker-nodejs
+https://github.com/Roslaan001/docker-nodejs-with-mongodb
+cd docker-nodejs-with-mongodb
 ```
 
 ##### Step 2: Build the image
