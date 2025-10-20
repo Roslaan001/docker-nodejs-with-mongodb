@@ -1,6 +1,6 @@
 services:
   web:
-    image: 448923945614.dkr.ecr.us-east-1.amazonaws.com/abdulsomad005/nodejs-with-mongo:1.3
+    build: .
     ports:
       - "3000:3000"
     environment:
