@@ -15,10 +15,14 @@ pipeline {
                         ssh-keyscan -H ec2-3-84-155-68.compute-1.amazonaws.com >> ~/.ssh/known_hosts
 
 
-                        ssh ubuntu@ec2-3-84-155-68.compute-1.amazonaws.com "
-                        set -e
-                        docker compose up -d
-                        "
+                        ssh ubuntu@ec2-3-84-155-68.compute-1.amazonaws.com << 'EOF'
+                                set -e
+                                git clone https://github.com/Roslaan001/docker-nodejs-with-mongodb.git
+                                cd docker-nodejs-with-mongodb
+                                
+                                docker compose up -d
+                            EOF
+                        
                     '''
                 }
                 }
