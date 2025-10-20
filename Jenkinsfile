@@ -23,8 +23,7 @@ pipeline {
                                     cd docker-nodejs-with-mongodb
                                     
                                 fi
-
-                                cd docker-nodejs-with-mongodb
+                                
                                 docker compose up -d
                             EOF
                     '''
