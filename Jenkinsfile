@@ -16,10 +16,12 @@ pipeline {
 
 
                         ssh ubuntu@ec2-3-84-155-68.compute-1.amazonaws.com << 'EOF'
-                                set -e
-                                git clone https://github.com/Roslaan001/docker-nodejs-with-mongodb.git
+                                if [ ! -d "docker-nodejs-with-mongodb" ]; then
+                                    git clone https://github.com/Roslaan001/docker-nodejs-with-mongodb.git
+                                else
+                                    cd docker-nodejs-with-mongodb
+                                fi
                                 cd docker-nodejs-with-mongodb
-                                
                                 docker compose up -d
                             EOF
                         
