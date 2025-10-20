@@ -19,13 +19,14 @@ pipeline {
                                 set -e
                                 if [ ! -d "docker-nodejs-with-mongodb" ]; then
                                     git clone https://github.com/Roslaan001/docker-nodejs-with-mongodb.git
+                                    cd docker-nodejs-with-mongodb
                                 else
                                     cd docker-nodejs-with-mongodb
                                     
                                 fi
-                                
+
                                 docker compose up -d
-                            EOF
+                                EOF
                     '''
                 }
                 }
